@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  recipe-app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      # Tell the app to use the SQLite file inside the container
+      - DATABASE_URL=recipes.db
+      - GIN_MODE=release
+    volumes:
+      - ./recipes.db:/root/recipes.db
+    restart: always
